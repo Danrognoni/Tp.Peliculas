@@ -23,7 +23,7 @@ public class Pelicula {
 
     @Min(1895)
     @Max(value = 2025)
-    private int anioLanzamiento;
+    private Integer anioLanzamiento;
 
     private String genero;
 
