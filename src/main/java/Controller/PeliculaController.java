@@ -28,11 +28,11 @@ public class PeliculaController {
     public ResponseEntity<?> listarPeliculas(){
         return ResponseEntity.ok(service.listar());
     }
-    @GetMapping
+    @GetMapping("/{id}")
     public ResponseEntity<?> obtenerPorId ( @PathVariable Long Id){
         return service.buscarPorId(Id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
-    @GetMapping
+    @GetMapping("/anio/{anio}")
     public ResponseEntity<?> buscarPoranio ( @PathVariable Integer anio){
         return ResponseEntity.ok(service.buscarPorAnio(anio));
     }
