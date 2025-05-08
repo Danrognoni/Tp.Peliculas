@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequestMapping("/Peliculas")
 public class PeliculaController {
 
@@ -29,11 +29,11 @@ public class PeliculaController {
         return ResponseEntity.ok(service.listar());
     }
     @GetMapping
-    public ResponseEntity<?> obtenerPorId (@Valid @PathVariable Long Id){
+    public ResponseEntity<?> obtenerPorId ( @PathVariable Long Id){
         return service.buscarPorId(Id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
     @GetMapping
-    public ResponseEntity<?> buscarPoranio (@Valid @PathVariable Integer anio){
+    public ResponseEntity<?> buscarPoranio ( @PathVariable Integer anio){
         return ResponseEntity.ok(service.buscarPorAnio(anio));
     }
 
