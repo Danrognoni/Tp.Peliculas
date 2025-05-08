@@ -1,4 +1,4 @@
-package Exception;
+package com.Pelicula.Pelicula.Exception;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;

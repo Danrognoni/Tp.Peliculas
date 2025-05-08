@@ -1,4 +1,4 @@
-package Model;
+package com.Pelicula.Pelicula.Model;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import jakarta.persistence.*;
@@ -7,22 +7,25 @@ import org.springframework.boot.autoconfigure.web.WebProperties;
 import org.springframework.lang.NonNull;
 
 @Entity
-@Table (name = "Peliculas")
-
+@Table (name = "movies")
 public class Pelicula {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;
 
     @NotNull
-    @Size(min = 2, max = 100)
+    @Column(nullable=false)
+    //@Size(min = 2, max = 100)
     private String titulo;
 
     @NotNull
+    @Column(nullable=false)
     private String director;
 
-    @Min(1895)
-    @Max(value = 2025)
+    //@Min(1895)
+    //@Max(value = 2025)
+    @NotNull
+    @Column(nullable=false)
     private Integer anioLanzamiento;
 
     private String genero;
