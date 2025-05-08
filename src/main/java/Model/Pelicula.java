@@ -1,43 +1,48 @@
 package Model;
 
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
-import java.time.Year;
+import org.springframework.boot.autoconfigure.web.WebProperties;
+import org.springframework.lang.NonNull;
+
+@Entity
+@Table (name = "Peliculas")
 
 public class Pelicula {
-
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long Id;
 
-    @NotNull(message = "El título no puede ser nulo")
-    @Size(min = 2, max = 100, message = "El título debe tener entre 2 y 100 caracteres")
+    @NotNull
+    @Size(min = 2, max = 100)
     private String titulo;
 
-    @NotNull(message = "El director no puede ser nulo")
+    @NotNull
     private String director;
 
-    @Min(value = 1895, message = "El año de lanzamiento no puede ser menor a 1895")
+    @Min(1895)
+    @Max(value = 2025)
     private int anioLanzamiento;
 
-    private String genero; // opcional
+    private String genero;
 
-
-
-
-    // Constructor vacío (requerido por JPA)
-    public Pelicula() {}
-
-    // Getters y Setters
-
-    public Long getId() {
-        return id;
+    public Pelicula(long id, String titulo, String director, int anioLanzamiento, String genero) {
+        Id = id;
+        this.titulo = titulo;
+        this.director = director;
+        this.anioLanzamiento = anioLanzamiento;
+        this.genero = genero;
+    }
+    public Pelicula() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public long getId() {
+        return Id;
+    }
+
+    public void setId(long id) {
+        Id = id;
     }
 
     public String getTitulo() {
