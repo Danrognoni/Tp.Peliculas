@@ -1,11 +1,13 @@
 package com.Pelicula.Pelicula.Exception;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.stream.Collectors;
 @RestControllerAdvice
@@ -31,5 +33,9 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(DocumentaryBelow1920.class)
     public ResponseEntity<String>DocumentaryBelow1920(DocumentaryBelow1920 ex){
         return ResponseEntity.badRequest().body(ex.getMessage());
+    }
+    @ExceptionHandler(BusinessException.class)
+    public ResponseEntity<String> HandleBussinesException(BusinessException ex){
+         return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
     }
 }

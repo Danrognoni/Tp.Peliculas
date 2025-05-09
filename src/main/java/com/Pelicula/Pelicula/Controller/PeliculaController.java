@@ -19,17 +19,19 @@ public class PeliculaController {
 
 
     @PostMapping
-    public ResponseEntity<?> crearPelicula(@RequestBody Pelicula pelicula) {
+    public ResponseEntity<Pelicula> crearPelicula(@RequestBody Pelicula pelicula) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.crearPelicula(pelicula));
     }
     @GetMapping
     public ResponseEntity<?> listarPeliculas(){
         return ResponseEntity.ok(service.listar());
     }
+
     @GetMapping("/{id}")
     public ResponseEntity<?> obtenerPorId (@PathVariable Long id){
         return service.buscarPorId(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
+
     @GetMapping("/anio/{anio}")
     public ResponseEntity<?> buscarPoranio (@PathVariable Integer anio){
         return ResponseEntity.ok(service.buscarPorAnio(anio));

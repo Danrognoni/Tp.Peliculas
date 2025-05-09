@@ -22,8 +22,8 @@ public class Pelicula {
     @Column(nullable=false)
     private String director;
 
-    //@Min(1895)
-    //@Max(value = 2025)
+    @Min(1895)
+    @Max(value = 2025)
     @NotNull
     @Column(nullable=false)
     private Integer anioLanzamiento;
